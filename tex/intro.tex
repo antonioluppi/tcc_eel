@@ -1,0 +1,91 @@
+\chapter{Introdução}
+%\addcontentsline{toc}{chapter}{Introdução}
+\label{intro}
+    
+    % Quem? este trabalho Quando? durante meu estágio Como? usando um framework de atores e o ambiente de desenvilvimento labview Onde? na v2com, empresa de m2m e etc O quê? um programa testa placas de circuito impresso Por porquê? varios pq
+    % quem? o que? como?
+    Este trabalho trata de um estudo de caso e implementação de um programa de teste funcional e estrutural de PCIM (Placa de circuito impresso montada), a partir do modelo de atores de computação concorrente \citep{hewitt2010actor, hewitt2013computation} 
+    com o foco em flexibilidade, reusabilidade e escalabilidade para grandes produções. Para isto, foi utilizado um conjunto de classes que implementam o modelo de atores em LabView. 
+  
+      % quando? onde? pq?
+      %arrumar
+    O projeto e implementação ocorreram durante um estágio na fábrica em Florianópolis de uma empresa paulistana de soluções M2M, cuja expansão de produção de módulos em conjunto com um maior rigor nas políticas de Garantia de Qualidade, implicou na necessidade de uma testagem sistêmica mais rápida e uma cobertura de testes mais abrangente. Além disso, pelos ciclos de desenvolvimento possuírem passo acelerado e serem exigidas customizações de hardware quase que por cada lote produzido, o desafio torna-se ainda maior, sendo necessário maior facilidade e flexibilidade de adequação dos roteiros e hardware de teste.
+    
+\section{Objetivos}
+    Implementar um programa de computador modular, concorrente e escalonável para testes estruturais, sistêmicos, e funcionais em linha de produção.
+    
+\section{Motivação}
+    Este trabalho se propõe a resolver problemas relacionados a teste de hardware em escala industrial, onde é necessário garantir velocidade e cobertura de teste, que são objetivos quase antagônicos.
+    
+    O desafio torna-se ainda maior considerando os seguintes fatores:
+    \begin{itemize}
+        \item A redução do tamanho das placas de circuito impresso assim como dos componentes de tecnologia SMD;
+        \item O uso de encapsulamentos BGA no projeto, que impossibilitam técnicas tradicionais de teste estrutural \textit{In-circuit}, sem que uma área considerável de placa seja dedicada aos pontos de medição manual ou através de sondas;
+        \item Tecnologias de comunicação sem-fio e barramentos de alta velocidade sendo incorporadas em praticamente todo sistema embarcado fabricado. Exigindo assim hardware de teste especializado;
+    \end{itemize}
+    
+    Da mesma forma que os sistemas eletrônicos, embarcados ou não, tornam-se mais complexos, os desafios na validação de hardware e controle de qualidade em fábrica acompanham. 
+    
+    Ao se tratar de programas de teste, é comum que, por falta de método ou pela dinâmica de trabalho imposta, o engenheiro de teste desenvolva programas de difícil reutilização ou manutenção. Em casos mais graves, todo processo produtivo inteiro depende de um programa desenvolvido por algum ex-funcionário, e que por falta de documentação ou técnicas de engenharia de software é incompreensível para a equipe mantenedora do processo. 
+    
+    Situações como esta colocam processos produtivos inteiros em risco, ou no melhor dos casos, fundamentados em técnicas antiquadas e legadas.
+      
+    % o projetista faz sua obra prima, o engenheiro de fábrica apaga o fogo
+
+
+\section{Contexto produtivo e cenário de teste}
+%sessão destinada a falar sobre o contexto produtivo
+% falar sobre o processo produtivo; quem faz os testes e perfil do testador;
+
+%Conclusão desse paragrafo: contextualizar o ambiente de trabalho para poder explicar os requisitos de projeto
+%Para levantar o método de trabalho e as especificações do programa, antes é necessário entender as peculiaridades do objeto de teste, seu ambiente de execução, o perfil dos operadores, etc.
+
+%Antes de mais nada queremos achar uma solução melhor alternativa à solução atual
+
+% inserir foto da fabrica e outros diagramas
+A análise do contexto produtivo é necessária para levantar as necessidades de desenvolvimento da empresa;
+
+    \subsection{processo produtivo terceirizado}
+        No processo de manufatura estudado, a fabricação das placas de circuito impresso e montagem não é feita dentro da empresa, mas através de terceiros especializados. Isso permite que o trabalho seja feito por empresas com conhecimento e maquinário avançados, com custos geralmente mais baixos. Além disso, permite também que produtos menos complexos possam ser para fabricantes com um processo de fabricação mais simples e barato.
+        
+        É certo que estas vantagens tenham seu preço, e alguns problemas de uma montagem terceirizada precisam ser tratados: a necessidade de treinamento e instrução de trabalho; acompanhamento e controle de qualidade; deslocamento da equipe de suporte técnico de produção para as fábricas para realizar tais funções; incompatibilidades entre as politicas organizacionais das companhias envolvidas, como em políticas de qualidade, prazos, entre outros; e falta de controle sobre a produção no geral. A maior parte desses problemas são relativamente fáceis de tratar e remediar, razão qual a maior parte de empresas com pequena e média produção optam por manter a fabricação e montagem de PCB sob competência de terceiros.
+        
+        No caso dos testes de manufatura, precisa-se levar em conta o treinamento dos operadores, que em alguns casos não possuem formação ou treinamento técnico adequado à função. Além disso, questões ergonômicas devem de ser levada em conta, acarretando em custos maiores, lentidão, exaustão e em casos extremos, danos permanentes à saúde dos trabalhadores. 
+        
+        Sendo assim, a automatização dos testes, como também uma boa interface do usuário, se colocam como requisitos importantes no projeto do hardware e software de teste, diminuindo assim o estresse da mão de obra envolvida. 
+        
+        Algumas etapas de teste, como os testes de inspeção de PCB, dependem da empresa de montagem ter ou não equipamento de inspeção ótica ou de raio-x - AOI e AOX, respectivamente. Caso não possuam, as falhas de PCB nas soldas ou interconexões somente serão detectadas nas etapas de teste final de linha de produção.
+        
+        Estes últimos, que consistem de testes funcionais e estruturais do DUT (device-under-test), são feitos pelas jigas de testes fabricadas e disponibilizadas pela contratante, assim como os computadores e softwares de teste.
+    \subsection{Ciclos rápidos de lançamento de novos produtos}
+         O clico de desenvolvimento e lançamento de novos produtos da empresa também é outro fator importante. No caso estudado, novos produtos são lançados a cada semestre, isso sem contar a flexibilidade de hardware e customizações de produto que podem aparecer a cada lote fabricado -- depende do acordado pelo departamento comercial com os clientes. Tal variedade de produto e velocidade de inovação tornam-se um exercício para o engenheiro de testes em pensar em modularidade e reusabilidade no sistema de testes.
+    \subsection{Crescimento, maturidade e melhores práticas}
+    
+        À medida que uma organização e seu volume de produção cresce, seu método produtivo amadurece e começa-se a dar importância para melhorias de processo assim como o uso de ferramentas mais avançadas. No caso de manufatura, testagem de produtos, e instrumentação, equipamentos de medição mais refinados são necessários para um diagnóstico preciso dos problemas de processo ou de projeto.
+        
+        Pensando nisso, optou-se por escolher uma solução de software com alta compatibilidade com os equipamentos de testagem disponíveis no mercado, e de certa forma padrão para empresas do ramo: o ambiente de desenvolvimento e programação \textit{LabVIEW} . Criado em 1986 pela National Instruments, baseia-se em uma linguagem de programação gráfica chamada G e é comumente aplicada em programas de aquisição de dados, automação industrial e controle de instrumentos de medição e teste. Existe também uma solução equivalente que faz uso de uma linguagem textual baseada em ANSI C chamada Labwindows/CVI, sendo mais direcionada aos engenheiros de software e profissionais mais habituados com linguagens textuais. Geralmente é aplicado em contratos de prestação de serviços de desenvolvimento de sistemas, pela maior facilidade na realização de auditorias nos arquivos de código fonte. Pensando nos planos de escalonamento da empresa, foi decidido investir no uso dessa ferramenta nos processos de testagem industriais.
+        Um outro problema encontrado é que à medida que surgia a necessidade de criar novas práticas produtivas, soluções de software monolíticas e atômicas foram sendo criadas e aplicadas. Vendo isso, também foi estipulada a integração dessas soluções ou até mesmo refaze-las para que possam funcionar como uma só e agilizar os processos. Pensando também em tornar o roteiro de teste mais concorrente, usando recursos de \textit{multi-threading}, facilmente alcançáveis usando o LabVIEW. 
+    \subsection{Visão geral do problema}
+        
+        Haviam problemas na etapa de teste de linha de produção da fábrica, como exemplo, a lentidão e rudimentariedade deste estágio em relação ao crescimento da produção. Baseado nisso foram levantados quais aspectos o novo programa de teste deveria atender:
+        
+        \begin{itemize}
+            \item Projeto de software modular, flexível e reutilizável;
+            \item Uso das ferramentas específicas para instrumentação e teste;
+            \item Paralelização de rotinas de teste, mantendo o cuidado para problemas de concorrência como \textit{deadlocks};
+            \item Uma interface de usuário mais ergonômica e funcional;
+            \item Integração com outros testes realizados pela empresa.
+        \end{itemize}
+            
+
+    \section{Visão Geral deste trabalho}
+    %todo depois que inserir todas as labels em cada capitulo, vir aqui e escrever essa parte com \refs e descrições mais exatas
+        Os capítulos contidos na primeira parte do trabalho são uma revisão de estado da arte em testes avançados de hardware eletrônico, abordando as motivações e técnicas usadas e as atuais linhas de pesquisa em teste estrutural e funcional de PCIMs, assim como trabalhos que são referência na área.
+        
+        Em seguida, o capítulo de estudo de caso e metodologia trata da compreensão do problema e solução adotada.    
+        
+        A implementação do programa, assim como a descrição de cada módulo desenvolvido e suas interfaces serão falados no capitulo 5. 
+        
+        Por fim, no capitulo de análise de desempenho, um comparativo com o programa de teste anterior será feito, assim como um balanço de prós e contras assim como uma análise critica e propostas para trabalhos futuros.
+        
+        %teste e comparaçaõ com o programa anterior

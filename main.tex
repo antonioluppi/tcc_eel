@@ -1,0 +1,86 @@
+\documentclass{ufsc-thesis}
+\usepackage[utf8]{inputenc}
+
+\title{Estudo de caso de um programa baseado no modelo de atores para teste e diagnóstico de circuitos eletrônicos}
+\author{Antonio Carlos Luppi Junior}
+\date{Dezembro 2016}
+\local{Florianópolis}
+\orientador{Fernando Rangel de Sousa}
+%\coorientador{Equipe \abnTeX}
+\instituicao{%
+  Universidade Federal de Santa Catarina -- UFSC
+  \par
+  Departamento de Engenharia Elétrica e Eletrônica
+  \par
+  Programa de Graduação}
+\tipotrabalho{Trabalho de Conclusão de Curso}
+% O preambulo deve conter o tipo do trabalho, o objetivo, 
+% o nome da instituição e a área de concentração 
+\preambulo{Monografia submetida ao Departamento de Engenharia Elétrica e Eletrônica da Universidade Federal de Santa Catarina como requisito da disciplina EEL-7890.}
+
+
+\usepackage{booktabs}
+%\usepackage{multirow} % para gerar tabelas
+\usepackage[table,xcdraw]{xcolor} % para gerar tabelas
+% \documentclass[xcolor=table]{beamer}
+\usepackage[authoryear,sort,elide]{natbib}
+\usepackage{array}
+
+%suporte à portugues brasileiro
+\usepackage[brazil]{babel}	% for multilingual support
+\usepackage[utf8]{inputenc} % for use utf8
+\usepackage[T1]{fontenc}
+%https://pt.sharelatex.com/learn/Portuguese
+
+%suporte matematico e gráfico
+\usepackage{amstext,amsmath}
+\usepackage{graphicx}
+\usepackage{calc}
+\graphicspath{ {fig/} }
+\usepackage{subcaption} % Para usar duas ou mais figuras como uma só. [caption=false]
+\usepackage[a5paper]{geometry}
+%\usepackage[alf]{abntex2cite}
+\usepackage{textcomp} % para usar o simbolo de trademark
+
+\usepackage{tabularx}  % for 'tabularx' environment and 'X' column type
+\usepackage{ragged2e}  % for '\RaggedRight' macro (allows hyphenation)
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X} 
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\begin{document}
+\frontmatter
+\imprimircapa
+\imprimirfolhaderosto
+%\thispagestyle{empty}
+
+    \input{tex/preintro}
+  \mainmatter
+        \setcounter{page}{1}
+    \input{tex/intro}
+\part{O estado da arte em teste e diagnóstico de sistemas}
+    \input{tex/rev}
+    %\input{tex/rev/rev_intro}
+    %\input{tex/rev/pcitest}
+    %\input{tex/rev/structutest}
+    %\input{tex/rev/functionaltest}
+\part{O experimento}
+    \input{tex/model/requisitos}
+    \input{tex/model/model}
+    
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+%\bibliographystyle{plain}
+\bibliographystyle{apalike}
+
+\bibliography{references}
+\end{document}
+
+% --- 
+% https://github.com/mateusduboli/ufsc-thesis-latex
+% ---------------------------------------------------------
