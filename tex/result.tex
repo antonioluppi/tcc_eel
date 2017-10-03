@@ -1,0 +1,61 @@
+\chapter{Resultados e Análise}
+\label{result}    
+    
+\section{Resultados e Análise de Desempenho}
+    
+    Com o programa pronto para ser validado, foi montado um esquema de teste para avaliação interna de desempenho do programa de testes, antes de entrar em produção na fábrica. A intenção era de compará-lo em relação à versão em Java e também detectar erros de software que possam ter passado despercebidos durante o desenvolvimento. Foram separadas cerca de 5 placas do GT650 para teste. Cada uma delas foi testada duas vezes por cada um dos dois programas, totalizando 20 execuções. O teste foi executado pelo autor em bancada de desenvolvimento.
+        
+    A tabela \ref{tab:resultado} exibe as médias do tempo de execução de teste para os dois programas. Nota-se, pela tabela, uma redução de quase 7 segundos no tempo médio de teste do programa reescrito em relação ao programa legado. É possível observar que estes resultados são atribuídos somente pelas mudanças ergonômicas do programa, já que o roteiro é idêntico ao anterior. Questões de velocidade de processamento entre as linguagens não refletiram em muitas mudanças, se for considerado que nenhuma das atividades exige uso intenso de CPU, já que consiste de rotinas de comunicação e tratamento de dados em baixa velocidade. O gargalo do teste é a própria velocidade de resposta do dispositivo sob teste e das interações com o operador, como nos testes com o multímetro. Certamente que resultados melhores podem ser obtidos se aproveitados os recursos de concorrência de software que \textit{framework} oferece, mas infelizmente não foi possível tratar os despejos de teste e comparar as diferenças de execução, bloco a bloco, do roteiro de teste.
+        
+    \begin{table}[h]
+        \centering
+        \caption{Média e desvio padrão das 20 amostras de teste de bancada}
+        \label{tab:resultado}
+        \begin{tabular}{l|cc}
+        
+                          & Programa Legado & Programa Reescrito \\
+    \hline
+            Média (s)         & $33.65\pm2.43$          & $26.24\pm3.37$                          \\
+        \end{tabular}
+    \end{table}
+    
+    Nota-se também que a distribuição dos tempos de teste do programa novo é ligeiramente mais difusa do que o do programa antigo, o que pode ser atribuído à falta de hábito na operação do software.
+
+\section{Análise da implementação}
+
+    A falta de um analisador de linguagem de marcação que interprete os roteiros de teste dificulta que este programa entre em operação em fábrica pois, no esquema atual, qualquer alteração no roteiro de teste requer uma nova compilação do programa.
+    
+    Além da questão de flexibilidade do roteiro de teste, ainda é necessário que o programa passe por uma etapa maior de testes controlados e exposição a erros de produção controlados, a fim de depurar erros de programa como também melhorar os tratadores de exceção.
+   
+    O ambiente LabVIEW permite ter uma visão clara do fluxo de sinais e seu \textit{multithreading} natural permite a realização de sistemas concorrentes com facilidade. Entretanto, a implementação do modelo de atores ficou comprometida pelas limitações do seu \textit{framework} em LabVIEW, principalmente pela impossibilidade de livre comunicação entre atores sem relação pai-filho, e também porque a criação de classes de mensagens depende de macros para serem geradas, o que enrijeceu o processo de desenvolvimento. O uso da linguagem gráfica do ambiente LabVIEW, apesar de simples para pequenas rotinas, torna-se complicado e difícil de refatorar, se aplicado a programas maiores, e sua implementação do paradigma orientado a objetos, assim como do modelo de atores, é demasiadamente complicada e problemática de usar.
+    Uma maneira de contornar isto seria talvez a utilização do Labwindows/CVI, o ambiente C da National Instruments, ou o uso do LabVIEW somente em partes aonde ele se sobressalta como melhor opção. Isso permitiria melhor controle de versão, refatoração de código, revisão por pares e aplicação de boas práticas de programação textual. 
+    
+   
+\chapter{Conclusão}
+\label{conclusao}
+
+    Neste trabalho foi possível mostrar a aplicação do \textit{framework} de atores para a solução de problemas de final de linha de montagem de placas eletrônicas. O trabalho conseguiu cumprir com os requisitos de modularidade e flexilidade de implementação, porém foi limitado pela falta de um interpretador de arquivos de configuração que estendesse a flexibilidade do sistema à equipe de teste no local de produção. No que diz respeito à produtividade, uma atualização de jiga de teste pode melhorar a taxa de produção, e no caso particular das jigas com chaveamento de instrumentos de teste, o sistema de atores e o uso de concorrência pode ser melhor explorado.
+    
+    \section{Trabalhos futuros}          
+    Dentre as melhorias interessantes para o processos de teste de placas eletrônicas, destacam-se:
+    \begin{itemize}
+            
+        \item Um interpretador de roteiro para flexibilização da execução de testes e para poder testar outros produtos com as mesmas ferramentas de software;
+        
+        \item Um escalonador e gerenciador de recursos para o uso com uma jiga multiplexada para teste de múltiplas unidades simultâneas;
+        
+        \item  Criar uma linguagem de marcação para os roteiros de teste que dê suporte ao sistema de atores e otimize o tempo de execução;
+
+        \item Construção de uma jiga de testes que suporte múltiplas placas de circuito impresso testadas simultaneamente. No aspecto de software, isso demandaria a reescrita do controlador ou o desenvolvimento de um ator de hierarquia superior.
+    \end{itemize}
+    
+    É possível melhorar consideravelmente a qualidade do teste ao aplicar técnicas de \textit{projeto orientado à testabilidade} em uma nova revisão do produto. Essa opção, apesar de custosa à equipe de projeto, possui um bom retorno de investimento. Outra possibilidade de melhoria seria a partir de uma análise de cobertura de faltas, transformando isto em uma nova especificação de baterias de teste. 
+    
+    Ambas as propostas só se tornam viáveis conforme a relevância do volume de perdas durante a produção e dos retornos para manutenção, especialmente aqueles que se enquadram nos casos de \textit{causa desconhecida} no controle de qualidade.
+        
+    \section{Palavras finais}
+    
+    Feitas as críticas, ressalta-se que o modelo de atores possui potencial para a implementação de rotinas de teste concorrente e escalona bem para aplicações maiores. O arranjo de módulos desacoplados foram implementados com sucesso e sua interação em teste desempenhou conforme esperado. Os avanços na ergonomia da interface mostraram-se também relevantes à produtividade e nas melhorias de condição de trabalho.
+    
+    O trabalho foi proveitoso no aprendizado de técnicas de teste e diagnóstico de sistemas eletrônicos e suas aplicações durante os processos de manufatura, operação e manutenção. Constatou-se também que o uso de técnicas e boas práticas de desenvolvimento de software facilitam a manutenção e melhorias ao longo dos anos, prevenindo retrabalho e otimizando o tempo de desenvolvimento.
+    

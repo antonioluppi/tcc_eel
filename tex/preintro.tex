@@ -9,10 +9,8 @@
 % com o documento, salve-o como PDF no diretório do seu projeto e substitua todo
 % o conteúdo de implementação deste arquivo pelo comando abaixo:
 %
-% \begin{fichacatalografica}
-%     \includepdf{fig_ficha_catalografica.pdf}
-% \end{fichacatalografica}
-\imprimirfichacatalografica
+
+%\imprimirfichacatalografica
 \begin{comment}
 \begin{fichacatalografica}
 	\vspace*{\fill}					% Posição vertical
@@ -37,8 +35,8 @@
 		1. Palavra-chave1.
 		2. Palavra-chave2.
 		I. Orientador.
-		II. Universidade xxx.
-		III. Faculdade de xxx.
+		II. Universidade Federal de Santa Catarina.
+		III. Departamento de Engenharia Elétrica e Eletrônica.
 		IV. Título\\ 			
 	
 	\hspace{8.75cm} CDU 02:141:005.7\\
@@ -65,8 +63,9 @@
 % do trabalho. Após isso, substitua todo o conteúdo deste arquivo por uma
 % imagem da página assinada pela banca com o comando abaixo:
 %
-% \includepdf{folhadeaprovacao_final.pdf}
 %
+
+\begin{comment}
 \begin{folhadeaprovacao}
 
   \begin{center}
@@ -85,11 +84,11 @@
     \vspace*{\fill}
    \end{center}
         
-   Trabalho aprovado. \imprimirlocal, XX de novembro de 2015:
+   Trabalho aprovado. \imprimirlocal, 07 de Julho de 2017:
 
-   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
-   \assinatura{\textbf{Professor} \\ Convidado 1}
-   \assinatura{\textbf{Professor} \\ Convidado 2}
+   \assinatura{\textbf{\imprimirorientador, Dr.} \\ Orientador \\ Universidade Federal de Santa Catarina} 
+   \assinatura{\textbf{Fabian Leonardo Cabrera Riano, Dr.}  \\ Universidade Federal de Santa Catarina}
+   \assinatura{\textbf{Renato Lucas Pacheco, Dr.}  \\ Universidade Federal de Santa Catarina}
    %\assinatura{\textbf{Professor} \\ Convidado 3}
    %\assinatura{\textbf{Professor} \\ Convidado 4}
       
@@ -102,6 +101,7 @@
   \end{center}
   
 \end{folhadeaprovacao}
+\end{comment}
 % ---
 
 % ---
@@ -111,7 +111,7 @@
    \vspace*{\fill}
    \centering
    \noindent
-    \textit{ Dedico este trabalho à Dona Mirian, minha mãe.} \vspace*{\fill}
+    \textit{Este trabalho é dedicado à minha mãe.} \vspace*{\fill}
 \end{dedicatoria}
 % ---
 
@@ -119,35 +119,18 @@
 % Agradecimentos
 % ---
 \begin{agradecimentos}
-%To be done.
-\begin{comment}
 
-Agradeço a Heloisa, sua ajuda e motivação fez com que esse trabalho acontecece.
 
-Aos meus amigos, Lucas Stéfano, João Gabriel Reis, Petrus, pelo apoio e ajuda com revisões.
 
-Depois de quase nove anos de curso, agradeço especialmente à paciência da minha família, e em especial da minha mãe. 
+Agradeço primeiramente ao Professor Fernando Rangel pela paciência e profissionalismo em me orientar neste trabalho. Agradeço à Universidade Federal de Santa Catarina por me proporcionar educação gratuita e de qualidade, não só profissional como também cidadã.
 
-Ao povo brasileiro que pagam pela universidade pública. Espero que meu trabalho e carreira possam refletir numa nação melhor para seu povo.
+Agradeço à Heloisa pelas muitas revisões textuais e pelo suporte e carinho em todos os momentos. 
+Aos meus amigos de graduação pelo companheirismo neste anos de UFSC, em especial ao Lucas Stéfano, por revisar meu trabalho. E por fim, agradeço à Mirian, minha mãe, pelo apoio incondicional.
 
-E a todas as outras pessoas, que não
-\end{comment}
 \end{agradecimentos}
 % ---
 
-% ---
-% Epígrafe
-% ---
-\begin{epigrafe}
-    \vspace*{\fill}
-	\begin{flushright}
-%		\textit{``epigrafe\\
-%epigrafe\\
-%epigrafe.'' \\
- %       } Autor\\
-	\end{flushright}
-\end{epigrafe}
-% ---
+
 
 % ---
 % RESUMOS
@@ -156,21 +139,22 @@ E a todas as outras pessoas, que não
 % resumo em português
 \setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
 \begin{resumo}
-    Este trabalho relata o processo de desenvolvimento de um software de testes funcional e estrutural para validar o funcionamento e detectar falhas em placas eletrônicas no processo produtivo assim como nos retornos de manutenção. O desenvolvimento foi feito à partir de uma jiga de testes com interface serial com o dispositivo, testes no circuito por pontas de prova e de potência de sinal RF. Focando em modularidade e concorrência, o programa foi baseado no Modelo de Atores e implementado no ambiente LabView. %Este trabalho também contém uma revisão do estado da arte em testes e diagnósticos sistêmicos de alta qualidade para circuitos eletrônicos, como também as práticas habituais e desafios na atualidade. Técnicas especializadas e padrões industriais para teste de placas complexas são introduzidas. 
-
- \textbf{Palavras-chaves}: teste funcional. teste estrutural. modelo de atores.
+    Este trabalho relata o processo de desenvolvimento de um software de testes funcionais para validação e detecção de falhas em placas eletrônicas em seu processo produtivo assim como nos retornos de manutenção. Os requisitos de flexibilidade e modularidade levaram a escolha do \textit{framework} de atores, a implementação do Modelo de Atores de computação concorrente em LabVIEW. Foram criadas classes de atores para cada área de competência de teste: interface com multímetros, comunicação com o dispositivo sob teste, teste de potência RF, gerador de registros de teste e o controle de execução. Melhorias em ergonomia foram consideradas durante o processo de desenvolvimento, e testes prévios de execução das rotinas de teste apontaram melhorias no tempo de execução de testes e automatização do processo.
+    
+ 
+    \textbf{Palavras-chaves}: teste funcional. teste estrutural. modelo de atores. programação concorrente. LabVIEW. montagem de placas de circuito impresso. 
 \end{resumo}
 
 % resumo em inglês
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
    
-   This is the english abstract. 
-
+   This work reports the development process of a functional test sofware for fail detection and validation of assembled circuit boards on their productive process and in field returns. The requirements in flexibility and modularity led to the choice of the actor framework, the Labview implementation of the Actor Model of concurrent computing. Actor classes were developed for each field of competence: multimeter interface, device under test communication, RF power test, test log generator, and execution control. Enhancements in ergonomics were considered during the development process, and prior tests runs of the routines indicated improvements in the test execution time and process automation.
+   
    \vspace{\onelineskip}
  
    \noindent 
-   \textbf{Key-words}: funcional test. structural test. actor model. 
+   \textbf{Key-words}: funcional test. structural test. actor model. concurrent programming. LabVIEW. printed circuit board assembly.
  \end{otherlanguage*}
 \end{resumo}
 
@@ -194,8 +178,8 @@ E a todas as outras pessoas, que não
 % inserir lista de abreviaturas e siglas
 % ---
 \begin{siglas}
-    \item [AOI] Automated Optical Inspection
-    \item [ASIC] Application-Specific Integrated Circuit 
+    \item [AOI] \textit{Automated Optical Inspection}
+    \item [ASIC] \textit{Application-Specific Integrated Circuit}
     \item [ATS] \textit{Automated Test Systems}
     \item [AXI] \textit{Automated X-ray Inspection}
     \item [BERT] \textit{Bit-error Rate}
@@ -203,17 +187,26 @@ E a todas as outras pessoas, que não
     \item [BIST] \textit{Build-in Self Test}
     \item [BST] \textit{Boundary Scan Test}
     \item [CA] Corrente Alternada
+    \item [CAN] \textit{Controller Area Network}
     \item [CC] Corrente Contínua
     \item [DfD] \textit{Design for Debug}
     \item [DfT] \textit{Design for Testability}
     \item [DfY] \textit{Design for Yield}
     \item [EDGE] \textit{Enhanced Data rates for GSM Evolution}
+    \item [E/S] Entrada/Saída
     \item [FPGA] \textit{Field-programmable Gate Array}
     \item [FPT] \textit{Flying Probe Test}
-    \item [GPRS] G\textit{eneral Packet Radio Service}
-    \item [ICT] \textit{In-Circuit Test}
+    \item [GPRS] \textit{General Packet Radio Service}
+    \item [ICL] \textit{Instrument Connectivity Language} 
+    \item [ICT] Teste Intra-circuito ou \textit{In-Circuit Test}
     \item [IEEE] \textit{Institute of Electrical and Electronics Engineers}
+    \item [IMEI] \textit{International Mobile Equipment Identity}
+    \item [IP] \textit{intellectual property}
+    \item [JSON] \textit{JavaScript Object Notation}
     \item [JTAG] \textit{Joint Test Action Group}
+    \item [LAN] \textit{Local Area Network}
+    \item [LIN] \textit{Local Interconnect Network}
+    \item [LVDS] \textit{Low Voltage Differential signaling}
     \item [M2M] \textit{Machine-to-machine}
     \item [MDA] \textit{Manufacturing Defect Analysis}
     \item [NFF] \textit{No failure found}
@@ -221,17 +214,25 @@ E a todas as outras pessoas, que não
     \item [OEM] \textit{Original Equipment Manufacturer}
     \item [OTAP] \textit{Over-the-air Provisioning}
     \item [PCI] Placa de circuito Impresso
+    \item [PCIe] \textit{Peripheral Component Interconnect Express}
     \item [PCB] \textit{Printed Circuit Board}
     \item [PCIM] Placa de circuito impresso e montada
+    \item [PDL] \textit{procedural description language}
     \item [PRPG] \textit{Pseudo-random Pattern Generator}
     \item [QA] \textit{Quality Assurance}
     \item [RSN] \textit{Reconfigurable Scaning Networks}
-    \item [SIM] S\textit{ubscriber Identification Module}
+    \item [SATA] \textit{Serial AT Attachment}
+    \item [SIM] \textit{Subscriber Identification Module}
+    \item [SIMcard] \textit{Subscriber Identification Module card}
     \item [SNR] \textit{Signal-Noise Ratio}
-    \item [SPI] \textit{Solder Paste Inspection}
-    \item [STUMPS] 
+    \item [SPI] \textit{Serial Peripheral Interface}
     \item [SoC] \textit{System-on-a-chip}
+    \item [SubVI] \textit{Sub Virtual Instrument}
+    \item [UART] \textit{Universal Asynchronous Receiver/Transmitter}
+    \item [VI] \textit{Virtual Instrument}
     \item [VILW] \textit{Very long instruction word}
+    \item [XML] \textit{eXtensible Markup Language}
+    
     
 \end{siglas}
 % ---

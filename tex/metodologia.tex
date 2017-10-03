@@ -1,0 +1,21 @@
+\chapter{Metodologia}
+\label{metodologia}
+%\addcontentsline{toc}{chapter}{Metodologia}
+
+%  entendemos o contexto do problema, levantamos requisitos, agora vamos modelar e tentar aplciar padro~eos de projeto pra facilitar
+
+% o que de técnica escolheu e da de usar
+%o problema proposto era a criação de um progrmaa de teste concorrente em labview para o teste funcional da placa.
+  
+Ao considerar os requisitos de escalabilidade, concorrência, paralelismo e modularidade, nota-se que dentre os padrões de projeto revisados, o \textit{framework} de atores é o que melhor se ajusta como base para o programa, principalmente porque permite a criação de componentes isolados, naturalmente concorrentes e aplicáveis em diversas configurações de software e hardware. Além disso, é uma estrutura escalável, tanto na criação de mais atores na mesma máquina, como também para sistemas distribuídos.
+
+Para a elaboração do modelo do sistema, utilizou-se de técnicas em Linguagem de Modelagem Unificada (do inglês \textit{Unified Modeling Language - UML)} para a sua representação e documentação \citep{rumbaugh2004unified}. Na etapa de implementação dos atores foram utilizados diversos padrões de projeto: máquinas de estado, tratadores de eventos, produtor-consumidores, e outros.
+
+\section{Material Utilizado}
+    \begin{itemize}
+        \item Computador com uma instalação LabVIEW e com 3 portas RS-232;
+        \item Multímetro ICEL MD-6400; 
+        \item Um NI 5680 (\textit{powermeter} USB);
+        \item Um GT650 e uma jiga de teste;
+        \item Bibliotecas do Labview do modelo de atores, de comunicação serial e driver do \textit{powermeter}.
+    \end{itemize}

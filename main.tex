@@ -1,11 +1,11 @@
-\documentclass{ufsc-thesis}
+\documentclass[a5paper]{ufsc-thesis}
 \usepackage[utf8]{inputenc}
 
-\title{Estudo de caso de um programa baseado no modelo de atores para teste e diagnóstico de circuitos eletrônicos}
+\title{Aplicação do modelo de atores em um programa de teste e diagnóstico de circuitos eletrônicos}
 \author{Antonio Carlos Luppi Junior}
-\date{Dezembro 2016}
+\date{Julho 2017}
 \local{Florianópolis}
-\orientador{Fernando Rangel de Sousa}
+\orientador{Prof. Fernando Rangel de Sousa}
 %\coorientador{Equipe \abnTeX}
 \instituicao{%
   Universidade Federal de Santa Catarina -- UFSC
@@ -16,15 +16,16 @@
 \tipotrabalho{Trabalho de Conclusão de Curso}
 % O preambulo deve conter o tipo do trabalho, o objetivo, 
 % o nome da instituição e a área de concentração 
-\preambulo{Monografia submetida ao Departamento de Engenharia Elétrica e Eletrônica da Universidade Federal de Santa Catarina como requisito da disciplina EEL-7890.}
+\preambulo{Monografia submetida ao Departamento de Engenharia Elétrica e Eletrônica da Universidade Federal de Santa Catarina como requisito da disciplina EEL7890 - Trabalho de Conclusão de Curso.}
 
-
+\usepackage{relsize}
 \usepackage{booktabs}
 %\usepackage{multirow} % para gerar tabelas
 \usepackage[table,xcdraw]{xcolor} % para gerar tabelas
 % \documentclass[xcolor=table]{beamer}
 \usepackage[authoryear,sort,elide]{natbib}
 \usepackage{array}
+\usepackage{pdfpages}
 
 %suporte à portugues brasileiro
 \usepackage[brazil]{babel}	% for multilingual support
@@ -50,25 +51,30 @@
   \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
 \begin{document}
-\frontmatter
+%\frontmatter
+\pretextual
 \imprimircapa
-\imprimirfolhaderosto
-%\thispagestyle{empty}
+\imprimirfolhaderosto*
+
+\begin{fichacatalografica}
+    \includepdf{Ficha_Catalografica.pdf}
+\end{fichacatalografica}
+
+\begin{folhadeaprovacao}
+    \includepdf{folhaaprovacao.pdf}
+\end{folhadeaprovacao}
 
     \input{tex/preintro}
-  \mainmatter
-        \setcounter{page}{1}
+  %\mainmatter
+  \textual
+   %     \setcounter{page}{1}
     \input{tex/intro}
-\part{O estado da arte em teste e diagnóstico de sistemas}
     \input{tex/rev}
-    %\input{tex/rev/rev_intro}
-    %\input{tex/rev/pcitest}
-    %\input{tex/rev/structutest}
-    %\input{tex/rev/functionaltest}
-\part{O experimento}
-    \input{tex/model/requisitos}
-    \input{tex/model/model}
-    
+    \input{tex/specs}
+    \input{tex/metodologia}
+    \input{tex/implement}
+    \input{tex/result}
+
 % ----------------------------------------------------------
 % ELEMENTOS PÓS-TEXTUAIS
 % ----------------------------------------------------------
